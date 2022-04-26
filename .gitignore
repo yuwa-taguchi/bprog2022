@@ -1,0 +1,6 @@
+.stack-work/
+bprog2022.cabal
+core
+*.hi
+*.o
+*~
