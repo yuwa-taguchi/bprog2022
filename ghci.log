@@ -207,3 +207,169 @@ Ok, one module loaded.
 2022-06-09 16:17:26.574726395
 >>> :quit
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/yuwa/bprog2022/.ghci
+2022-06-16 15:02:10.57143578
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/yuwa/bprog2022/.ghci
+2022-06-16 15:03:47.679758031
+>>> take 3 [3,1,4,1,5]
+[3,1,4]
+2022-06-16 15:04:31.760949121
+>>> 
+2022-06-16 15:06:31.01308038
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+Ok, no modules loaded.
+2022-06-16 15:10:50.238896355
+>>> :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-16 15:10:50.277016476
+>>> double
+
+<interactive>:5:1: error:
+    • No instance for (Show (Int -> Int)) arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+2022-06-16 15:13:04.318414062
+>>> take (double 2) [1,2,3,4,5]
+[1,2,3,4]
+2022-06-16 15:15:16.10461728
+>>> [1 .. 10]
+[1,2,3,4,5,6,7,8,9,10]
+2022-06-16 15:20:40.652410231
+>>> :e
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product[1 .. n]
+  11  
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-16 15:21:03.020094922
+>>> factorial 3
+6
+2022-06-16 15:22:10.311382323
+>>> factorial 4
+24
+2022-06-16 15:22:31.644667841
+>>> average [1,2,3,4,5]
+
+<interactive>:11:1: error:
+    Variable not in scope: average :: [a0] -> t
+2022-06-16 15:39:57.344239572
+>>> :e
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product[1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length)
+  17  
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+
+src/First.hs:16:24: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘t0 a0 -> Int’
+    • Probable cause: ‘length’ is applied to too few arguments
+      In the second argument of ‘div’, namely ‘(length)’
+      In the expression: div (sum xs) (length)
+      In an equation for ‘ave’: ave xs = div (sum xs) (length)
+   |
+16 | ave xs = div (sum xs) (length)
+   |                        ^^^^^^
+Failed, no modules loaded.
+2022-06-16 15:40:22.101773211
+>>> average [1,2,3,4,5]
+
+<interactive>:13:1: error:
+    Variable not in scope: average :: [a0] -> t
+2022-06-16 15:40:49.784500914
+>>> :e
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product[1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-16 15:41:32.499563746
+>>> average [1,2,3,4,5]
+3
+2022-06-16 15:41:45.208029739
+>>> :t take 3 [1,2,3,4,5]
+take 3 [1,2,3,4,5] :: Num a => [a]
+2022-06-16 15:50:01.325863018
+>>> init [1 .. 5]
+[1,2,3,4]
+2022-06-16 16:07:09.659477639
+>>> myinit [1 .. 5]
+
+<interactive>:18:1: error:
+    • Variable not in scope: myinit :: [a0] -> t
+    • Perhaps you meant ‘init’ (imported from Prelude)
+2022-06-16 16:14:51.498543351
+>>> :e
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product[1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs)
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-16 16:15:19.474186079
+>>> myinit [1 .. 5]
+[1,2,3,4]
+2022-06-16 16:15:34.30890744
+>>> :q
+Leaving GHCi.
