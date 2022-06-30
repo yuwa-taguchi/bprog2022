@@ -373,3 +373,234 @@ Ok, one module loaded.
 2022-06-16 16:15:34.30890744
 >>> :q
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/yuwa/bprog2022/.ghci
+2022-06-23 14:54:52.235089231
+>>> :i Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num NominalDiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.NominalDiffTime’
+instance Num DiffTime
+  -- Defined in ‘time-1.9.3:Data.Time.Clock.Internal.DiffTime’
+instance Num Word -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+2022-06-23 14:56:31.975555672
+>>> 1 == 2
+False
+2022-06-23 15:06:22.244298196
+>>> 1 < 2
+True
+2022-06-23 15:06:31.016436507
+>>> 1 <= 2
+True
+2022-06-23 15:06:47.232312247
+>>> 1 >= 2
+False
+2022-06-23 15:07:00.649057611
+>>> 'a' < 'b'
+True
+2022-06-23 15:11:30.598806071
+>>> 'a' < 'B'
+False
+2022-06-23 15:11:51.384308185
+>>> '' < 'a'
+
+<interactive>:8:1: error:
+    Parser error on `''`
+    Character literals may not be empty
+2022-06-23 15:13:21.301255126
+>>> 'ab' < 'b'
+
+<interactive>:9:1: error:
+    • Syntax error on 'ab'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'ab'
+2022-06-23 15:13:37.606916771
+>>> 1 /= 1
+False
+2022-06-23 15:16:07.901933802
+>>> 1 /= 2
+True
+2022-06-23 15:16:24.564600155
+>>> :info abs
+type Num :: * -> Constraint
+class Num a where
+  ...
+  abs :: a -> a
+  ...
+  	-- Defined in ‘GHC.Num’
+2022-06-23 15:30:32.15283855
+>>> abs
+
+<interactive>:13:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+2022-06-23 15:30:49.89530819
+>>> abs (-234)
+234
+2022-06-23 15:34:49.583673368
+>>> GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/yuwa/bprog2022/.ghci
+2022-06-30 14:56:44.093908368
+>>> [ x ^ 2 | x <- [1 .. 5] ]
+[1,4,9,16,25]
+2022-06-30 15:02:00.014940749
+>>> map (^2) [1 .. 5]
+[1,4,9,16,25]
+2022-06-30 15:04:30.964605913
+>>> [ x *  2 | x <- [1 .. 5]
+
+<interactive>:3:25: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+2022-06-30 15:12:41.34255637
+>>> [ x * 2 | x <- [1 .. 5 ]
+
+<interactive>:4:25: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+2022-06-30 15:13:31.217269422
+>>>  [ x * 2 | x <- [1 .. 5] ]
+[2,4,6,8,10]
+2022-06-30 15:14:17.311845775
+>>> [ x 'div' 2 | x <- [1 .. 5] ]
+
+<interactive>:6:5: error:
+    • Syntax error on 'div'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'div'
+2022-06-30 15:15:06.003859063
+>>> [ x 'div' 2 | x < [1 .. 5] ]
+
+<interactive>:7:5: error:
+    • Syntax error on 'div'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'div'
+2022-06-30 15:16:02.437846402
+>>> [ x 'div' 2 | x < [1 .. 5]]
+
+<interactive>:8:5: error:
+    • Syntax error on 'div'
+      Perhaps you intended to use TemplateHaskell or TemplateHaskellQuotes
+    • In the Template Haskell quotation 'div'
+2022-06-30 15:16:19.204839687
+>>> [ (x, y) | x <- "abc" , y <- [4,5]
+
+<interactive>:9:35: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+2022-06-30 15:21:13.26320705
+>>> [ (x, y) | x <- "abc", y <- [4,5] ]
+[('a',4),('a',5),('b',4),('b',5),('c',4),('c',5)]
+2022-06-30 15:21:50.225041144
+>>> [ (x, y) | y <- [4,5] , x <- "abc"]
+[('a',4),('b',4),('c',4),('a',5),('b',5),('c',5)]
+2022-06-30 15:24:30.551300497
+>>> l src/First.hs
+
+<interactive>:12:7: error:
+    Not in scope: ‘First.hs’
+    No module named ‘First’ is imported.
+2022-06-30 15:29:57.446326286
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product[1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs)
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [ x | xs <- xss, x <- xs ]
+Ok, no modules loaded.
+2022-06-30 15:31:02.167407206
+>>> :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:31:02.209687216
+>>> myconcat [[1,2,3],[4,5],[6,7,8,9]]
+[1,2,3,4,5,6,7,8,9]
+2022-06-30 15:33:15.181063364
+>>> [ 1 | _ <- [1 .. 5] ]
+[1,1,1,1,1]
+2022-06-30 15:47:54.155954774
+>>> mylength ['a' .. 'z']
+
+<interactive>:17:1: error:
+    • Variable not in scope: mylength :: [Char] -> t
+    • Perhaps you meant ‘length’ (imported from Prelude)
+2022-06-30 15:51:09.603483177
+>>> :e src/First.hs
+   1  module First where
+   2  
+   3  double :: Int -> Int
+   4  double x = x + x
+   5  
+   6  quadruple :: Int -> Int
+   7  quadruple x = double (double x)
+   8  
+   9  factorial :: Integer -> Integer
+  10  factorial n = product[1 .. n]
+  11  
+  12  average :: [Int] -> Int
+  13  average xs = sum xs `div` length xs
+  14  
+  15  ave :: [Int] -> Int
+  16  ave xs = div (sum xs) (length xs)
+  17  
+  18  myinit :: [a] -> [a]
+  19  myinit (x:[]) = []
+  20  myinit (x:xs) = x : (init xs)
+  21  
+  22  myconcat :: [[a]] -> [a]
+  23  myconcat xss = [ x | xs <- xss, x <- xs ]
+  24  
+  25  mylength :: [a] -> Int
+  26  mylength xs = sum [ 1 | _ <- xs ]
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:54:41.724405685
+>>> :l src/First.hs
+[1 of 1] Compiling First            ( src/First.hs, interpreted )
+Ok, one module loaded.
+2022-06-30 15:54:41.828802136
+>>> mylength ['a' .. 'z']
+26
+2022-06-30 15:55:05.085924507
+>>> ['a' .. 'z']
+"abcdefghijklmnopqrstuvwxyz"
+2022-06-30 15:55:34.180642646
+>>> ['あ' .. 'ん']
+"\12354\12355\12356\12357\12358\12359\12360\12361\12362\12363\12364\12365\12366\12367\12368\12369\12370\12371\12372\12373\12374\12375\12376\12377\12378\12379\12380\12381\12382\12383\12384\12385\12386\12387\12388\12389\12390\12391\12392\12393\12394\12395\12396\12397\12398\12399\12400\12401\12402\12403\12404\12405\12406\12407\12408\12409\12410\12411\12412\12413\12414\12415\12416\12417\12418\12419\12420\12421\12422\12423\12424\12425\12426\12427\12428\12429\12430\12431\12432\12433\12434\12435"
+2022-06-30 15:56:06.318892948
+>>> putStrLn it
+あぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをん
+2022-06-30 15:56:32.722074831
+>>> :q
+Leaving GHCi.
