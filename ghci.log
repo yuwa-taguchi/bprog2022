@@ -604,3 +604,42 @@ Ok, one module loaded.
 2022-06-30 15:56:32.722074831
 >>> :q
 Leaving GHCi.
+GHCi, version 9.0.2: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /home/yuwa/bprog2022/.ghci
+2022-07-07 16:05:05.888593543
+>>> :e scr/saesar.hs
+catn: scr/saesar.hs: openFile: does not exist (No such file or directory)
+2022-07-07 16:05:30.542797979
+>>> :l scr/saesar.hs
+
+<no location info>: error: can't find file: scr/saesar.hs
+Failed, no modules loaded.
+2022-07-07 16:05:30.599439945
+>>> :e scr/Caesar.hs
+catn: scr/Caesar.hs: openFile: does not exist (No such file or directory)
+2022-07-07 16:05:59.432874262
+>>> :l scr/Caesar.hs
+
+<no location info>: error: can't find file: scr/Caesar.hs
+Failed, no modules loaded.
+2022-07-07 16:05:59.530746649
+>>> :e src/Caesar.hs
+   1  module Caesar where
+   2  
+   3  import Data.Char
+
+<no location info>: error: can't find file: scr/Caesar.hs
+Failed, no modules loaded.
+2022-07-07 16:07:04.852671094
+>>> :l src/Caesar.hs
+[1 of 1] Compiling Caesar           ( src/Caesar.hs, interpreted )
+Ok, one module loaded.
+2022-07-07 16:07:04.940649363
+>>> ord 'A'
+65
+2022-07-07 16:07:33.485553437
+>>> ord 'a'
+97
+2022-07-07 16:07:48.971165884
+>>> :q
+Leaving GHCi.
